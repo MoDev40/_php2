@@ -4,6 +4,8 @@ include 'connection.php';
 
 header("Content-type:application/json");
 
+$action = $_POST['action'];
+
 function readAllData($conn) {
     $data = array();
     $response = array();
@@ -23,5 +25,11 @@ function readAllData($conn) {
 
     echo json_encode($response);
 }
+
+
+if(isset($action)){
+    $action($connection);
+}
+
 
 ?>
