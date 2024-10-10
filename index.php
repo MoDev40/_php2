@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP Ajax</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .modal {
+            display: none;
+        }
+        .modal.show {
+            display: flex;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 p-8">
     <div class="flex flex-col space-y-3">
-        <button class="w-40 p-2 text-white rounded-md bg-green-500">Add New Student</button>
+        <button id="showModal" class="w-40 p-2 text-white rounded-md bg-green-500">Add New Student</button>
         <table class="min-w-full bg-white rounded-lg shadow-md">
             <thead>
                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm">
@@ -23,6 +31,14 @@
             </tbody>
         </table>
     </div>
+    <div id="formModal" class="modal fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-lg w-1/3">
+            <div class="p-5 border-b">
+                <h2 class="text-lg font-semibold">Student Form</h2>
+            </div>
+        </div>
+    </div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="main.js"></script>
 </body>
 </html>
