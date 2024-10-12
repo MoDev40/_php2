@@ -29,24 +29,24 @@
             <div class="p-5 border-b">
                 <h2 class="text-lg font-semibold">Student Form</h2>
             </div>
-            <form class="p-8">
+            <form class="p-8" id="studentForm">
                     <div class="mb-4">
                         <label for="student-id" class="block text-sm font-medium text-gray-700">Student ID</label>
-                        <input type="text" id="student-id" name="student_id" class="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-blue-500">
+                        <input type="text" id="student_id" name="student_id" class="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-blue-500">
                     </div>
     
                     <div class="mb-4">
                         <label for="student-name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" id="student-name" name="student_name"  class="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-blue-500">
+                        <input type="text" id="student_name" name="student_name"  class="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-blue-500">
                     </div>
     
                     <div class="mb-4">
                         <label for="student-class" class="block text-sm font-medium text-gray-700">Class</label>
-                        <input type="text" id="student-class" name="student_class"  class="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-blue-500">
+                        <input type="text" id="student_class" name="student_class"  class="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-blue-500">
                     </div>
                     <div class="p-5 space-x-3 flex justify-end">
                         <button type="button" id="closeModal" class="px-4 py-2 bg-red-500 text-white rounded">Close</button>
-                        <button type="button" id="saveData" class="px-4 py-2 bg-green-500 text-white rounded">Save</button>
+                        <button type="submit" id="saveData" class="px-4 py-2 bg-green-500 text-white rounded">Save</button>
                     </div>
             </form>
         </div>
