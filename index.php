@@ -10,9 +10,10 @@
 <body class="bg-gray-100 p-8">
     <div class="flex flex-col space-y-3">
         <button id="showModal" class="w-40 p-2 text-white rounded-md bg-green-500">Add New Student</button>
-        <table class="min-w-full bg-white rounded-lg shadow-md">
+        <table id="studentTale" class="min-w-full bg-white rounded-lg shadow-md">
             <thead>
                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm">
+                    <th class="py-3 px-4 text-left">No.</th>
                     <th class="py-3 px-4 text-left">Student ID</th>
                     <th class="py-3 px-4 text-left">Name</th>
                     <th class="py-3 px-4 text-left">Class</th>
