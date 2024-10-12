@@ -24,27 +24,29 @@ function readAllData($conn) {
     }
 
     echo json_encode($response);
+    exit;
 }
 
 function addStudent ($con) {
-    $response = array();
-    $data = "Successfully added";
-
+        
     $id= $_POST['student_id'];
     $name= $_POST['student_name'];
     $class= $_POST['student_class'];
     
+    $response = array();
+
     $query = "INSERT INTO student(id,name,class) VALUES('$id','$name','$class')";
 
     $result = $con -> query($query);
 
     if($result){
-        $response = array("status"=>true,"data"=> $data);
+        $response = array("status"=>true,"data"=> "Successfully added");
     }else {
         $response = array("status"=>false,"data"=> $con -> error);
     }
 
-    echo json_encode($response) ;
+    echo json_encode($response);
+    exit;
 }
 
 if(isset($action)){
