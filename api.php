@@ -49,8 +49,26 @@ function addStudent ($con) {
     exit;
 }
 
+function deleteStudent ($con) {
+    
+    $student_id  = $_POST['id'];
+    $response = array();
+
+    $query = "DELETE FROM student WHERE id ='$student_id'";
+
+    $result = $con -> query($query);
+
+    if($result){
+        $response = array("status"=>true,"data"=> "Successfully deleted");
+    }else {
+        $response = array("status"=>false,"data"=> $con -> error);
+    }
+
+    echo json_encode($response);
+    exit;
+}
+
 if(isset($action)){
-    $action($connection);
     $action($connection);
 }
 
