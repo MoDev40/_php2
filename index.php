@@ -48,6 +48,7 @@
                     <div class="p-5 space-x-3 flex justify-end">
                         <button type="button" id="closeModal" class="px-4 py-2 bg-red-500 text-white rounded">Close</button>
                         <button type="submit" id="saveData" class="px-4 py-2 bg-green-500 text-white rounded">Save</button>
+                        <button type="submit" id="updateData" class="modal px-4 py-2 bg-green-500 text-white rounded">Edit</button>
                     </div>
             </form>
         </div>

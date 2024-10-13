@@ -1,34 +1,48 @@
 $("#showModal").click(function () {
   $("#formModal").addClass("show");
+  $("#saveData").removeClass("modal");
 });
 
 $("#closeModal").click(function () {
   $("#formModal").removeClass("show");
+  $("#updateData").removeClass("show");
 });
 
-$("#studentForm").submit((e) => {
+function showEditBtn() {
+  $("#updateData").addClass("show");
+  $("#formModal").addClass("show");
+  $("#saveData").addClass("modal");
+}
+
+$("#studentForm").on("submit", function (e) {
   e.preventDefault();
 
-  let formData = new FormData(e.target);
-  formData.append("action", "addStudent");
+  const action = $(document.activeElement).attr("id");
 
-  $.ajax({
-    method: "POST",
-    dataType: "JSON",
-    data: formData,
-    url: "api.php",
-    processData: false,
-    contentType: false,
-    success: function () {
-      e.target.reset();
-      getStudents();
-    },
-    error: function (xhr, status, error) {
-      alert(
-        `Delete Error:, status:${status}, error:${error},text:${xhr.responseText}`
-      );
-    },
-  });
+  if (action === "saveData") {
+    let formData = new FormData(e.target);
+    formData.append("action", "addStudent");
+
+    $.ajax({
+      method: "POST",
+      dataType: "JSON",
+      data: formData,
+      url: "api.php",
+      processData: false,
+      contentType: false,
+      success: function () {
+        e.target.reset();
+        getStudents();
+      },
+      error: function (xhr, status, error) {
+        alert(
+          `Delete Error:, status:${status}, error:${error},text:${xhr.responseText}`
+        );
+      },
+    });
+  } else if (type === "updateData") {
+    console.log("Edit button clicked");
+  }
 });
 
 function getStudents() {
@@ -52,8 +66,10 @@ function getStudents() {
             <td class='py-3 px-4'>${item.name}</td>
             <td class='py-3 px-4'>${item.class}</td>
             <td class='py-3 px-4'>
-              <button class='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600'>Update</button>
-              <button id="btnDelete" delete_id="${
+              <button update_id="${
+                item.id
+              }" class='update_info bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600'>Update</button>
+              <button update_id="${
                 item.id
               }" class='delete_info bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 ml-2'>Delete</button>
             </td>
@@ -71,6 +87,12 @@ function getStudents() {
 
 getStudents();
 
+// update
+$("#studentTale").on("click", "button.update_info", function () {
+  showEditBtn();
+});
+
+// delete
 $("#studentTale").on("click", "button.delete_info", function () {
   let formData = new FormData();
 
