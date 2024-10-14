@@ -1,6 +1,10 @@
+const form = $("#studentForm")[0];
+
 $("#showModal").click(function () {
   $("#formModal").addClass("show");
   $("#saveData").removeClass("modal");
+  form.reset();
+  form[0].disabled = false;
 });
 
 $("#closeModal").click(function () {
@@ -37,12 +41,12 @@ $("#studentForm").on("submit", function (e) {
       },
       error: function (xhr, status, error) {
         alert(
-          `Delete Error:, status:${status}, error:${error},text:${xhr.responseText}`
+          `Error: status:${status}, error:${error},text:${xhr.responseText}`
         );
       },
     });
   } else if (action === "updateData") {
-    console.log(formData);
+    
   }
 });
 
@@ -101,10 +105,10 @@ function getStudent(id) {
     contentType: false,
     processData: false,
     success: function ({ data }) {
-      const form = $("#studentForm")[0];
       form[0].value = data.id;
       form[1].value = data.name;
       form[2].value = data.class;
+      form[0].disabled = true;
     },
     error: function (xhr, status, error) {
       alert(
