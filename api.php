@@ -27,6 +27,29 @@ function readAllData($conn) {
     exit;
 }
 
+function getStudent($conn) {
+    $response = array();
+
+    $student_id = $_POST['id'];
+
+    $query = "SELECT * FROM student WHERE id = '$student_id'";
+
+    $result = $conn -> query($query);
+
+    if($result){
+
+        $data = $result -> fetch_assoc();
+        
+        $response = array("status" => true,"data" => $data);
+
+    }else {
+        $response = array("status" => false,"data" => $conn ->error);
+    }
+
+    echo json_encode($response);
+    exit;
+}
+
 function addStudent ($con) {
         
     $id= $_POST['student_id'];
