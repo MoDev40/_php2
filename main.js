@@ -19,8 +19,9 @@ $("#studentForm").on("submit", function (e) {
 
   const action = $(document.activeElement).attr("id");
 
+  let formData = new FormData(e.target);
+
   if (action === "saveData") {
-    let formData = new FormData(e.target);
     formData.append("action", "addStudent");
 
     $.ajax({
@@ -69,7 +70,7 @@ function getStudents() {
               <button update_id="${
                 item.id
               }" class='update_info bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600'>Update</button>
-              <button update_id="${
+              <button delete_id="${
                 item.id
               }" class='delete_info bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 ml-2'>Delete</button>
             </td>
@@ -90,6 +91,7 @@ getStudents();
 // update
 $("#studentTale").on("click", "button.update_info", function () {
   showEditBtn();
+  const id = $(this).attr("update_id");
 });
 
 // delete
