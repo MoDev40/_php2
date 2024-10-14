@@ -39,7 +39,7 @@ function getStudent($conn) {
     if($result){
 
         $data = $result -> fetch_assoc();
-        
+
         $response = array("status" => true,"data" => $data);
 
     }else {
@@ -64,6 +64,27 @@ function addStudent ($con) {
 
     if($result){
         $response = array("status"=>true,"data"=> "Successfully added");
+    }else {
+        $response = array("status"=>false,"data"=> $con -> error);
+    }
+
+    echo json_encode($response);
+    exit;
+}
+
+function updateStudent($con) {
+    $response = array();
+
+    $id= $_POST['student_id'];
+    $name= $_POST['student_name'];
+    $class= $_POST['student_class'];
+    
+    $query = "UPDATE  student SET name='$name', class='$class' WHERE id='$id'";
+
+    $result = $con -> query($query);
+
+    if($result){
+        $response = array("status"=>true,"data"=> "Successfully updated");
     }else {
         $response = array("status"=>false,"data"=> $con -> error);
     }
