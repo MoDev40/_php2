@@ -21,6 +21,8 @@ function showEditBtn() {
 $("#studentForm").on("submit", function (e) {
   e.preventDefault();
 
+  form[0].disabled = false;
+
   const action = $(document.activeElement).attr("id");
 
   let formData = new FormData(e.target);
@@ -46,7 +48,26 @@ $("#studentForm").on("submit", function (e) {
       },
     });
   } else if (action === "updateData") {
+    formData.append("action", "updateStudent");
     
+    $.ajax({
+      method: "POST",
+      dataType: "JSON",
+      data: formData,
+      url: "api.php",
+      processData: false,
+      contentType: false,
+      success: function () {
+        e.target.reset();
+        getStudents();
+      },
+      error: function (xhr, status, error) {
+        form[0].disabled = true;
+        alert(
+          `Error: status:${status}, error:${error},text:${xhr.responseText}`
+        );
+      },
+    });
   }
 });
 
@@ -84,7 +105,7 @@ function getStudents() {
     },
     error: function (xhr, status, error) {
       alert(
-        `Delete Error:, status:${status}, error:${error},text:${xhr.responseText}`
+        `Error:, status:${status}, error:${error},text:${xhr.responseText}`
       );
     },
   });
