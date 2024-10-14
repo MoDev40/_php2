@@ -41,8 +41,8 @@ $("#studentForm").on("submit", function (e) {
         );
       },
     });
-  } else if (type === "updateData") {
-    console.log("Edit button clicked");
+  } else if (action === "updateData") {
+    console.log(formData);
   }
 });
 
@@ -88,10 +88,36 @@ function getStudents() {
 
 getStudents();
 
+function getStudent(id) {
+  let formData = new FormData();
+
+  formData.append("action", "getStudent");
+  formData.append("id", id);
+
+  $.ajax({
+    method: "POST",
+    data: formData,
+    url: "api.php",
+    contentType: false,
+    processData: false,
+    success: function ({ data }) {
+      const form = $("#studentForm")[0];
+      form[0].value = data.id;
+      form[1].value = data.name;
+      form[2].value = data.class;
+    },
+    error: function (xhr, status, error) {
+      alert(
+        `Error:, status:${status}, error:${error},text:${xhr.responseText}`
+      );
+    },
+  });
+}
 // update
 $("#studentTale").on("click", "button.update_info", function () {
   showEditBtn();
   const id = $(this).attr("update_id");
+  getStudent(id);
 });
 
 // delete
